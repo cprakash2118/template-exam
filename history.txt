@@ -1,0 +1,459 @@
+    1  pwd
+    2  mkdir work 
+    3  pwd
+    4  cd work/
+    5  pwd
+    6  ll
+    7  pwd
+    8  vim Dockerfile
+    9  #podman build --layers=false -t base-image-jboss .
+   10  podman images
+   11  podman ps -a
+   12  podman build --layers=false -t base-image-jboss .
+   13  podman images
+   14  mkdir new 
+   15  cd new/
+   16  pwd
+   17  ll
+   18  sudo su - 
+   19  sudo su 
+   20  cd ..
+   21  ll
+   22  rm -rf new/
+   23  pwd
+   24  ll
+   25  podman images
+   26  cd ~/Downloads/
+   27  pwd
+   28  ll
+   29  ls -lrth 
+   30  cd -
+   31  pwd
+   32  ll
+   33  mv ~/Downloads/jboss-eap-7.4.0.zip .
+   34  ll
+   35  mv Dockerfile Dockerfile-java-unzip-bkp
+   36  vim Dockerfile
+   37  podman images
+   38  podman tag localhost/base-image-jboss quay.io/cprakash2118/java-image-01
+   39  podman images
+   40  podman push quay.io/cprakash2118/java-image-01
+   41  podman  login quay.io
+   42  podman push quay.io/cprakash2118/java-image-01
+   43  vim Dockerfile
+   44  ll
+   45  vim Dockerfile
+   46  sudo su - 
+   47  ll
+   48  unzip jboss-eap-7.4.0.zip 
+   49  ll
+   50  vim Dockerfile
+   51  jboss-eap-7.4/bin/standalone.sh 
+   52  ll
+   53  rm -rf jboss-eap-7.4
+   54  ll
+   55  vim Dockerfile
+   56  podman build --layers=false -t jboss-eap-01 .
+   57  ll
+   58  unzip jboss-eap-7.4.0.zip 
+   59  ll
+   60  vim Dockerfile
+   61  ll
+   62  rm -rf jboss-eap-7.4
+   63  ll
+   64  podman build --layers=false -t jboss-eap-01 .
+   65  mkdir old
+   66  cp -rpv Dockerfile-java-unzip-bkp old/
+   67  cd old/
+   68  pwd
+   69  ll
+   70  mv Dockerfile-java-unzip-bkp Dockerfile
+   71  ll
+   72  vim Dockerfile 
+   73  #podman build --layers=false -t jboss-eap-01 .
+   74  podman images
+   75  vim Dockerfile 
+   76  cd ..
+   77  vim Dockerfile
+   78  ll
+   79  unzip jboss-eap-7.4.0.zip 
+   80  vim Dockerfile
+   81  ll
+   82  vim jboss-eap-7.4/bin/add-user.sh
+   83  cd  old/
+   84  pwd
+   85  ll
+   86  vim Dockerfile 
+   87  #podman build --layers=false -t jboss-eap-01 .
+   88  podman images
+   89  podman build --layers=false -t quay.io/cprakash2118/java-image-02 .
+   90  podman images
+   91  podman push quay.io/cprakash2118/java-image-02
+   92  ll
+   93  cd ..
+   94  ll
+   95  vim Dockerfile
+   96  history | grep build 
+   97  #podman build --layers=false -t jboss-eap-01 . 
+   98  podman build --layers=false -t jboss-eap-01 . 
+   99  vim Dockerfile
+  100  podman build --layers=false -t jboss-eap-01 . 
+  101  vim Dockerfile
+  102  podman build --layers=false -t jboss-eap-01 . 
+  103  podman images
+  104  ll
+  105  rm -rf jboss-eap-7.4
+  106  ll
+  107  touch ScriptStart.sh
+  108  touch ScriptLog.sh
+  109  touch ScriptStop.sh
+  110  chmod 755 *.sh 
+  111  ll
+  112  mv Dockerfile-java-unzip-bkp old/
+  113  mv old ~/
+  114  ll
+  115  podman images
+  116  vim Dockerfile 
+  117  podman run -d --name gmail -p 8090:8080 -p 8091:9990 -p 8092:9999 localhost/jboss-eap-01
+  118  podman ps
+  119  vim ScriptStart.sh 
+  120  vim Dockerfile 
+  121  ll
+  122  podman --tail 10 gmail 
+  123  podman tail 10 gmail 
+  124  podman logs --tail 10 gmail 
+  125  vim ScriptLog.sh 
+  126  vim ScriptStop.sh 
+  127  ll
+  128  vim Dockerfile 
+  129  podman images
+  130  podman build --layers=false -t jboss-eap-02 . 
+  131  podman images
+  132  ./ScriptStop.sh 
+  133  vim ScriptStart.sh 
+  134  ./ScriptStart.sh 
+  135  podman ps
+  136  ./ScriptLog.sh 
+  137  ll
+  138  ./ScriptStop.sh 
+  139  ll
+  140  vim Dockerfile 
+  141  podman images
+  142  podman tag localhost/jboss-eap-02 quay.io/cprakash2118/jboss-image-qcs 
+  143  podman images
+  144  podman images | grep c40328c8ce86
+  145  podman push quay.io/cprakash2118/jboss-image-qcs
+  146  podman images
+  147  podman tag localhost/jboss-eap-02 localhost/jboss-eap-02:7.2.final
+  148  podman images
+  149  podman save -o any_name.tar localhost/jboss-eap-02
+  150  ls
+  151  cd Downloads
+  152  ls
+  153  cd work
+  154  ls
+  155  cd ..
+  156  cd work
+  157  ls
+  158  vi Dockerfile
+  159  podman images
+  160  vi Dockerfile
+  161  podman image build -t jboss-eap.7.4.0 .
+  162  podman container ls
+  163  podman container ls -a
+  164  podman ps
+  165  podman -rmi $(podman images -qa) -f
+  166  podman rmi $(podman images -qa) -f
+  167  podman images
+  168  vi Dockerfile
+  169  podman image build -t jboss-eap.7.4.0 .
+  170  vi Dockerfile
+  171  podman image build -t jboss-eap.7.4.0 .
+  172  podman login docker.io
+  173  podman image build -t jboss-eap.7.4.0 .
+  174  podman image search docker.io|grep jboss
+  175  podman search docker.io|grep jboss
+  176  podman search docker.io/libraries|grep ubi
+  177  podman search docker.io|grep ubi
+  178  vi Dockerfile
+  179  podman image build -t jboss-eap.7.4.0 .
+  180  vi Dockerfile
+  181  podman image build -t jboss-eap.7.4.0 .
+  182  podman images
+  183  podman run -d --name=jboss-eap.7.4.0-app -p 8080:8080 -p 9990:9990 -p 9999:9999 localhost/jboss-eap.7.4.0
+  184  podman ps
+  185  podman container ls
+  186  ls
+  187  vi ScriptStart.sh
+  188  podman container rm a6a6091b6236
+  189  podman container stop a6a6091b6236
+  190  podman container rm a6a6091b6236
+  191  ls
+  192  vi ScriptStart.sh 
+  193  ./ScriptStart.sh
+  194  podman ps
+  195  ls
+  196  vi ScriptLog.sh 
+  197  ./ScriptLog.sh 
+  198  vi ScriptStop.sh
+  199  ./ScriptStop.sh
+  200  podman images
+  201  podman tag localhost/jboss-eap.7.4.0 localhost/jboss-eap.7.4.0:Final
+  202  podman images
+  203  podman tag localhost/jboss-eap.7.4.0 localhost/jboss-eap.7.4.Final
+  204  podman tag localhost/jboss-eap.7.4.0 localhost/jboss-eap.7.4.final
+  205  podman images
+  206  podman image rm 5c0b15c25e0d
+  207  podman image rm localhost/jboss-eap.7.4.final
+  208  podman images
+  209  podman tag localhost/jboss-eap.7.4.0:Final docker.io/raghava28042021/jboss-eap-7.4.0:Final
+  210  podman images
+  211  podman push docker.io/raghava28042021/jboss-eap-7.4.0:Final
+  212  podman images
+  213  podman save -o jboss.eap-7.4.Final.tar localhost/jboss-eap-7.4.0:Final
+  214  podman save -o jboss.eap-7.4.Final.tar localhost/jboss.eap-7.4.0:Final
+  215  podman save -o jboss.eap.7.4.Final.tar localhost/jboss.eap-7.4.0:Final
+  216  podman save -o jboss-eap.7.4.final.tar localhost/jboss.eap-7.4.0:Final
+  217  podman save -o jboss-eap.7.4.final.tar localhost/jboss-eap-7.4.0:Final
+  218  podman save -o jboss-eap.7.4.final.tar localhost/jboss-eap.7.4.0:Final
+  219  ls
+  220  mkdir -p mariadb
+  221  ls
+  222  cd mariadb
+  223  podman pods
+  224  podman pod ls
+  225  podman pod --help
+  226  podman pod
+  227  podman pod ps
+  228  podman create --name=wordpresspod
+  229  podman pod create --name=wordpresspod
+  230  podman ps
+  231  podman pod ps
+  232  ls $HOME/Desktop
+  233  ls
+  234  podman pull mariadb
+  235  podman pull docker.io/mariadb
+  236  exit
+  237  podman images
+  238  podman rmi -qa 
+  239  podman rmi -af  
+  240  df -THP 
+  241  podman ps 
+  242  podman ps -a
+  243  podman rm -rf b467747d837b-infra 
+  244  podman rm -f b467747d837b-infra 
+  245  podman images
+  246  podman ps
+  247  podman pull quay.io/cprakash2118/java-unzip-httpd-image
+  248  podman images
+  249  podman run -d --name app1 -p 8080:80 quay.io/cprakash2118/java-unzip-httpd-image
+  250  podman ps 
+  251  curl http://localhost:8080
+  252  podman ps
+  253  podman exec -it app1 bash 
+  254  curl http://localhost:8080
+  255  podman stop app1 
+  256  podman diff app1 
+  257  podman commit --help |less
+  258  podman commit app1 app1-commit-image01
+  259  podman images
+  260  podman run -d --name app2 -p 8081:80 localhost/app1-commit-image01
+  261  podman ps 
+  262  podman start app1
+  263  podman ps
+  264  curl localhost:8080
+  265  curl localhost:8081
+  266  lab multicontainer-design start
+  267  podman rmi -af 
+  268  podman images
+  269  podman ps -a
+  270  podman login registry.redhat.io
+  271  cd DO180/
+  272  pwd
+  273  ll
+  274  cd labs/
+  275  ll
+  276  cd multicontainer-design/
+  277  ll
+  278  cd deploy/
+  279  ll
+  280  cd nodejs/
+  281  ll
+  282  vim Containerfile 
+  283  ip -br addr list | grep eth0
+  284  pwd
+  285  ll
+  286  cd nodejs-source/
+  287  ll
+  288  cd models/
+  289  pwd
+  290  ll
+  291  vim db.js 
+  292  pwd
+  293  cd ..
+  294  ll
+  295  cd nodejs/
+  296  ll
+  297  vim Containerfile 
+  298  cat build.sh 
+  299  ./build.sh 
+  300  echo $NEXUS_BASE_URL
+  301  lab-configure 
+  302  cat /usr/local/etc/ocp4.config 
+  303  source /usr/local/etc/ocp4.config
+  304  echo $NEXUS_BASE_URL
+  305  ./build.sh 
+  306  podman images
+  307  ll
+  308  cd networked/
+  309  ll
+  310  vim run.sh 
+  311  ./run.sh 
+  312  podman ps
+  313  # mysql -uuser1 -h 172.25.250.9 -pmypa55 -P30306 items
+  314  vim /home/student/DO180/labs/multicontainer-design/deploy/nodejs/networked/db.sql
+  315   mysql -uuser1 -h 172.25.250.9 -pmypa55 -P30306 items < /home/student/DO180/labs/multicontainer-design/deploy/nodejs/networked/db.sql
+  316  podman ps 
+  317  podman exec -it mysql bash 
+  318  podman ps
+  319  podman exec -it todoapi bash
+  320  podman inspect mysql |less
+  321  podman inspect todoapi |less
+  322  lab-configure 
+  323  cat /usr/local/etc/ocp4.config
+  324  source /usr/local/etc/ocp4.config
+  325  oc login -u $RHT_OCP4_DEV_USER -p $RHT_OCP4_DEV_PASSWORD $RHT_OCP4_MASTER_API
+  326  oc whoami 
+  327  oc get nodes
+  328  oc whoami 
+  329  oc whoami  -t 
+  330  oc logout 
+  331  oc whoami 
+  332  oc login --token=sha256~_20Q75vK46vZ9rZkUwoNKDUskUqDBGkSxF8CRe8DK44 --server=https://api.ap46.prod.nextcle.com:6443
+  333  oc whoami 
+  334  pwd
+  335  df -THP 
+  336  podman images
+  337  podman rmi -af 
+  338  pwd
+  339  podman images
+  340  df -THP 
+  341  oc new-app --name test01 httpd
+  342  oc new-app --name test01 httpd:2.4
+  343  oc whoami 
+  344  lab-configure 
+  345  source /usr/local/etc/ocp4.config 
+  346  cat /usr/local/etc/ocp4.config
+  347  oc login -u ${RHT_OCP4_DEV_USER} -p ${RHT_OCP4_DEV_PASSWORD} ${RHT_OCP4_MASTER_API}
+  348  oc whoami 
+  349  oc get nodes 
+  350  oc new-app --name test01 httpd:2.4
+  351  oc new-app --name test01 httpd
+  352  oc get  is
+  353  oc get  is -n openshift-config 
+  354  oc get  is -n openshift
+  355  oc get  is -n openshift | grep httpd
+  356  oc new-app --name test01 default-route-openshift-image-registry.apps.ap46.prod.nextcle.com/openshift/httpd:2.4
+  357  oc new-app --name test01 httpd:2.4
+  358  oc whoami 
+  359  oc get  is -n openshift | grep php
+  360  oc new-app --name test01 php:7.2
+  361  oc new-app --name test01 php:7.3
+  362  oc whoami 
+  363  oc project -q
+  364  oc new-project project1 
+  365  oc new-app --name test01 php:7.3
+  366  oc get pods
+  367  oc logs test01-7d8cd4999-wv58g 
+  368  pwd
+  369  mkdir work 
+  370  cd work/
+  371  pwd
+  372  ll
+  373  vim mypass.txt
+  374  source mypass.txt 
+  375  cat mypass.txt 
+  376  oc login -u ${_user_name} -p ${_password} ${_api_url}
+  377  oc whoami 
+  378  oc project -q 
+  379  oc new-project --help |less
+  380  oc new-project message-info --display-name="Information messages"
+  381  oc new-project message-info-02 --display-name="Information messages"
+  382  oc project -q 
+  383  oc get project
+  384   lab openshift-resources start
+  385  cd 
+  386  cd DO180/
+  387  ll
+  388  cd labs/
+  389  ll
+  390  cd multicontainer-design/
+  391  ll
+  392  cd deploy/
+  393  ll
+  394  cd nodejs/
+  395  ll
+  396  cd
+  397  oc get  template 
+  398  oc projects |less
+  399  oc get  template -n openshift 
+  400  oc get  template -n openshift  | grep mysql
+  401  oc get  template -n openshift  | grep mysql-presistent
+  402  oc get  template -n openshift  | grep mysql-per
+  403  oc get  templatecakephp-mysql-persistent -n openshift  
+  404  oc get  template cakephp-mysql-persistent -n openshift  -o yaml > temnp.yaml 
+  405  vim temnp.yaml 
+  406  cat temnp.yaml | grep COMPOSER_MIRROR
+  407  grep -i "database" temnp.yaml 
+  408  cd work/
+  409  pwd
+  410  ll
+  411  wget https://github.com/openshift/origin/blob/master/examples/db-templates/postgresql-persistent-template.json
+  412  ls -lrth 
+  413  vim postgresql-persistent-template.json 
+  414  > postgresql-persistent-template.json 
+  415  vim postgresql-persistent-template.json 
+  416  cat /etrht
+  417  cat /etc/rht
+  418  git clone https://github.com/cprakash2118/origin
+  419  podman images
+  420  cd work/
+  421  ll
+  422  rm -rf jboss-eap-7.4.0.zip 
+  423  rm -rf jboss-eap.7.4.final.tar
+  424  df -THP 
+  425  lab openshift-resources start
+  426  ll
+  427  cat mypass.txt 
+  428  lab-configure 
+  429  source /usr/local/etc/ocp4.config
+  430  cat /usr/local/etc/ocp4.config
+  431  oc whoami 
+  432  oc get nodes
+  433  oc whoami 
+  434   oc new-project ${RHT_OCP4_DEV_USER}-mysql-openshift
+  435  oc get  project
+  436  # oc new-app --template=mysql-persistent -p MYSQL_USER=user1 -p MYSQL_PASSWORD=mypa55 -p MYSQL_DATABASE=testdb  -p MYSQL_ROOT_PASSWORD=r00tpa55 -p VOLUME_CAPACITY=10Gi  
+  437  oc get template mysql-persistent -n openshift
+  438  oc get template mysql-persistent -n openshift -o yaml > mysql-persistent.yaml 
+  439  vim mysql-persistent.yaml 
+  440  cat mysql-persistent.yaml | grep -i user 
+  441  cat mysql-persistent.yaml | grep -i MYSQL_USER
+  442  x=10
+  443  y=20
+  444  if [ $x -eq $y ]; then echo "Both are equal"; else echo "Both are not equal"; fi
+  445  y=10
+  446  if [ $x -eq $y ]; then echo "Both are equal"; else echo "Both are not equal"; fi
+  447  oc process -f mysql-persistent.yaml -p MYSQL_USER=user1 -p MYSQL_PASSWORD=mypa55 -p MYSQL_DATABASE=testdb -p MYSQL_ROOT_PASSWORD=r00tpa55 -p VOLUME_CAPACITY=10Gi | oc create -f - 
+  448  oc get  pods
+  449  oc rsh mysql-1-hpx8b
+  450  history 
+  451  ll
+  452  git clone https://github.com/cprakash2118/template-exam
+  453  cp -rpv mysql-persistent.yaml template-exam/
+  454  cd /tmp/
+  455  cd -
+  456  cd template-exam/
+  457  pwd
+  458  ll
+  459  history > history.txt
